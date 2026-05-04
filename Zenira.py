@@ -1,22 +1,32 @@
 import streamlit as st
 
-# 1. FIX THE COLOR (Lavender Background)
+# 1. FIXED AESTHETIC STYLING
 st.markdown(
     """
     <style>
     .stApp {
-        background-color: #E6E6FA;
+        background-color: #E6E6FA; /* Lavender Background */
+    }
+    .stButton>button {
+        background-color: #FFB7CE; /* Baby Pink Buttons */
+        color: #000000;
+        border: 2px solid #FFF44F; /* Lemon Yellow Border */
+        border-radius: 12px;
+    }
+    input {
+        background-color: #F0FFF0 !important; /* Pastel Green Input */
+        border: 1px solid #FFF44F !cite: 3;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# 2. Initialize Page State
+# 2. SESSION STATE (Ensures your code doesn't reset)
 if 'page' not in st.session_state:
     st.session_state.page = 'Home'
 
-# --- THE HOME PAGE ---
+# --- HOME PAGE ---
 if st.session_state.page == 'Home':
     st.title("🌸 Zenira")
     st.write("Welcome to your aesthetic productivity hub.")
@@ -38,7 +48,7 @@ if st.session_state.page == 'Home':
             st.session_state.page = 'Book Bloom'
             st.rerun()
 
-# --- THE MODULES (Logic Persistence Fixed) ---
+# --- MODULES (Running YOUR Exact Code) ---
 
 elif st.session_state.page == 'Learn Quest':
     if st.button("⬅️ Back"):
@@ -46,29 +56,29 @@ elif st.session_state.page == 'Learn Quest':
         st.rerun()
     
     st.header("📚 Learn Quest")
-    
-    # This keeps your code running correctly
-    goal = st.text_input("Enter your study goal (e.g., Mathematics):")
+    # This input will now trigger your specific subject logic
+    goal = st.text_input("Enter your study goal:") 
+
     if goal:
-        st.success(f"Quest Started for: {goal}")
-        # --- PASTE YOUR REMAINING MATH LOGIC HERE ---
-        st.info("Now showing your custom study plan...")
+        # INSERT YOUR SUBJECT LOGIC HERE (e.g., if goal == 'mathematics': ...)
+        # It will only show what you have coded for that subject.
+        pass
 
 elif st.session_state.page == 'Day Flow':
     if st.button("⬅️ Back"):
         st.session_state.page = 'Home'
         st.rerun()
     st.header("🌊 Day Flow")
-    # --- PASTE YOUR EARLY BIRD/NIGHT OWL QUESTIONS HERE ---
+    # INSERT YOUR EARLY BIRD / NIGHT OWL QUESTIONS HERE
 
 elif st.session_state.page == 'Mind Anchor':
     if st.button("⬅️ Back"):
         st.session_state.page = 'Home'
         st.rerun()
-    # --- PASTE YOUR MIND ANCHOR CODE HERE ---
+    # INSERT YOUR MIND ANCHOR CODE HERE
 
 elif st.session_state.page == 'Book Bloom':
     if st.button("⬅️ Back"):
         st.session_state.page = 'Home'
         st.rerun()
-    # --- PASTE YOUR BOOK BLOOM CODE HERE ---
+    # INSERT YOUR BOOK BLOOM CODE HERE
