@@ -1,80 +1,65 @@
 import streamlit as st
 
-# 1. Page Configuration & Theme
-st.set_page_config(page_title="Zenira", page_icon="🌸", layout="centered")
+# 1. Page Config for that Aesthetic Feel
+st.set_page_config(page_title="Zenira", page_icon="🌸")
 
-# 2. Aesthetic Customization (Lavender, Baby Pink, Lemon Yellow)
-st.markdown("""
-    <style>
-    /* Background Color (Lavender) */
-    .stApp {
-        background-color: #E6E6FA;
-    }
+# 2. Keep the user on the right page (The Logic Fix)
+if 'page' not in st.session_state:
+    st.session_state.page = 'Home'
+
+# --- THE HOME PAGE ---
+if st.session_state.page == 'Home':
+    st.title("🌸 Zenira")
+    st.write("Welcome to your aesthetic productivity hub.")
+    st.write("### Your Journey Starts Here")
     
-    /* Custom Button Styling */
-    div.stButton > button:first-child {
-        background-color: #FFB7CE; /* Baby Pink */
-        color: #4B0082; /* Deep Indigo Text */
-        border: 2px solid #FFF44F; /* Lemon Yellow Border */
-        border-radius: 20px;
-        height: 3em;
-        width: 100%;
-        font-weight: bold;
-        transition: 0.3s;
-    }
+    # These buttons appear on the main page now
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("📚 Learn Quest"):
+            st.session_state.page = 'Learn Quest'
+            st.rerun()
+        if st.button("⚓ Mind Anchor"):
+            st.session_state.page = 'Mind Anchor'
+            st.rerun()
+    with col2:
+        if st.button("🌊 Day Flow"):
+            st.session_state.page = 'Day Flow'
+            st.rerun()
+        if st.button("🌸 Book Bloom"):
+            st.session_state.page = 'Book Bloom'
+            st.rerun()
 
-    /* Hover effect: Lemon Yellow */
-    div.stButton > button:first-child:hover {
-        background-color: #FFF44F;
-        border: 2px solid #FFB7CE;
-        color: #000000;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+# --- THE MODULES (Paste your specific logic below) ---
 
-# 3. Audio Implementation (Startup Sound)
-# This will attempt to autoplay startup.wav from your GitHub folder
-st.audio("startup.wav", format="audio/wav", autoplay=True)
-
-# 4. Main App Interface
-st.title("🌸 Zenira")
-st.write("Welcome to your aesthetic productivity hub.")
-
-# Sidebar Navigation for Modules
-menu = ["Home", "Learn Quest", "Day Flow", "Mind Anchor", "Book Bloom"]
-choice = st.sidebar.selectbox("Navigate Modules", menu)
-
-if choice == "Home":
-    st.subheader("Your Journey Starts Here")
-    st.write("Select a module from the sidebar to begin.")
-
-elif choice == "Day Flow":
-    st.subheader("🌊 Day Flow: Routine Manager")
-    st.write("Discover your energy pattern.")
+elif st.session_state.page == 'Learn Quest':
+    if st.button("⬅️ Back to Home"):
+        st.session_state.page = 'Home'
+        st.rerun()
     
-    pattern = st.radio(
-        "Which describes you best?",
-        ["Early Bird (Morning Energy)", "Night Owl (Late Night Energy)", "Day Spinner (Mid-day Energy)"]
-    )
-    
-    if st.button("Save My Pattern"):
-        st.success(f"Routine updated! You are officially a {pattern}.")
-
-elif choice == "Learn Quest":
     st.subheader("📚 Learn Quest")
-    st.info("Focus mode activated. What are we studying today?")
-    st.text_input("Enter your study goal:")
+    # YOUR ORIGINAL LOGO/TEXT CODE GOES HERE
+    goal = st.text_input("Enter your study goal:")
+    if goal:
+        # This will now STAY on the screen because of session_state
+        st.success(f"Logic Triggered for: {goal}")
+        # PASTE YOUR CALCULATIONS/STUDY PLAN LOGIC HERE
 
-elif choice == "Mind Anchor":
-    st.subheader("⚓ Mind Anchor")
-    st.write("Take a deep breath. Focus on the lavender background.")
-    if st.button("Start Meditation Timer"):
-        st.write("Timer started... Stay calm.")
+elif st.session_state.page == 'Day Flow':
+    if st.button("⬅️ Back to Home"):
+        st.session_state.page = 'Home'
+        st.rerun()
+    st.subheader("🌊 Day Flow")
+    # PASTE YOUR EARLY BIRD / NIGHT OWL QUESTIONS HERE
 
-elif choice == "Book Bloom":
-    st.subheader("📖 Book Bloom")
-    st.write("Track your reading and watch your knowledge grow.")
-    st.number_input("Pages read today:", min_value=0)
+elif st.session_state.page == 'Mind Anchor':
+    if st.button("⬅️ Back to Home"):
+        st.session_state.page = 'Home'
+        st.rerun()
+    # PASTE YOUR MIND ANCHOR CODE HERE
 
-# Final footer to prevent syntax sticking
-st.write("---")
+elif st.session_state.page == 'Book Bloom':
+    if st.button("⬅️ Back to Home"):
+        st.session_state.page = 'Home'
+        st.rerun()
+    # PASTE YOUR BOOK BLOOM CODE HERE
