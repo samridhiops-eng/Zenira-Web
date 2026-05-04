@@ -30,7 +30,7 @@ st.markdown("""
         color: #000000;
     }
     </style>
-    """, unsafe_allow_type=True)
+    """, unsafe_allow_html=True)
 
 # 3. Audio Implementation (Startup Sound)
 # This will attempt to autoplay startup.wav from your GitHub folder
