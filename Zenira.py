@@ -1,4 +1,4 @@
- import streamlit as st
+import streamlit as st
 
 # 1. Page Configuration & Theme
 st.set_page_config(page_title="Zenira", page_icon="🌸", layout="centered")
